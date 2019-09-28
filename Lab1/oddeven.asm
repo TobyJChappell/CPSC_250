@@ -6,7 +6,7 @@
 .text 										#text section
 .globl main 							#call main by SPIM
 
-main: la $t0, value 			#load address value into $s0
+main: la $t0, value 			#load address value into $t0
 			lw $s0, 0($t0)			#load word 0(value) into $s1
 			andi $t7, $s0, 1		#$t7 = 1 if odd and $t7 = 0 if even
 
