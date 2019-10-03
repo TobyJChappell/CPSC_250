@@ -1,7 +1,7 @@
 #author: Toby Chappell
-#date: 10/2/19
-#assignment: Lab 2 - SimpleSum.asm
-#description: Calculates the sum of N integers: 1 + 2 + 3 + … N, prompts the user for the value of N, and prints out the sum to the console (“The Sum of N integers is: “).
+#date: 10/14/19
+#assignment: Lab 3 - Sum2.asm
+#description: Modifies the MIPS program Sum.asm from Lab2 to have a function perform the addition operation: int add2 (int num1, int num2). (Don’t have to use the stack for this problem)
 
 .text 										#text section
 .globl main 							#call main by SPIM

@@ -6,14 +6,30 @@
 .text 										#text section
 .globl main 							#call main by SPIM
 
-main:
 			#Read 2 inputs
+main:	li	$v0,4						# print_string syscall code = 4
+			la	$a0, in					# load the address of in
+			syscall
+
 			li $v0, 5						#read_int syscall code = 5
 			syscall
 			move $s0, $v0				#syscall results returned in $s0
+
+			li	$v0,4						# print_string syscall code = 4
+			la	$a0, newline
+			syscall
+
+			li	$v0,4						# print_string syscall code = 4
+			la	$a0, in					# load the address of in
+			syscall
+
 			li $v0, 5						#read_int syscall code = 5
 			syscall
 			move $s1, $v0				#syscall results returned in $s1
+
+			li	$v0,4						# print_string syscall code = 4
+			la	$a0, newline
+			syscall
 
 			#Choose larger
 			slt $t0, $s0, $s1		#if first input is < second input
@@ -23,9 +39,9 @@ main:
 
 Sec:	move $s2, $s1				#second is larger so move to $s2
 
-			# Print msg
+			# Print out
 Out:	li	$v0,4						# print_string syscall code = 4
-			la	$a0, msg				# load the address of msg
+			la	$a0, out				# load the address of out
 			syscall
 
 			#Print larger int
@@ -33,8 +49,14 @@ Out:	li	$v0,4						# print_string syscall code = 4
 			move $a0, $s2				#int to print must be loaded into $a0
 			syscall
 
+			li	$v0,4						# print_string syscall code = 4
+			la	$a0, newline
+			syscall
+
 			li $v0, 10 					#exit
 			syscall
 
-.data 																#data section
-msg:	.asciiz	"The larger number is: "	#output message
+.data 																	#data section
+in:	.asciiz	"Input a Value: "						#input message
+out:	.asciiz	"The larger number is: "	#output message
+newline:	.asciiz "\n"									#new line
