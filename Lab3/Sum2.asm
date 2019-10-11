@@ -7,8 +7,8 @@
 .globl main 							#call main by SPIM
 
 			#Print in
-main: li	$v0,4						# print_string syscall code = 4
-			la	$a0, in					# load the address of in
+main: li	$v0,4						#print_string syscall code = 4
+			la	$a0, prompt			#load the address of in
 			syscall
 
 			#Get input
@@ -17,7 +17,7 @@ main: li	$v0,4						# print_string syscall code = 4
 			move $s0, $v0				#syscall results returned in $s0
 
 			li	$v0,4						# print_string syscall code = 4
-			la	$a0, newline
+			la	$a0, endl
 			syscall
 
 			#Reset Registers
@@ -28,7 +28,10 @@ main: li	$v0,4						# print_string syscall code = 4
 Loop:	slt $t1, $t0, $s0		#if count is less than n
 			beq $t1, 0, Out			#if count = n then go to output sum code
 			addi $t0, $t0, 1		#counter for loop
-			add $s1, $s1, $t0		#adds to sum
+			move $a0, $s1				#moves $s1 to $a0
+			move $a1, $t0				#moves $t0 to $a0
+			jal add2						#jumps and links to add2
+			move $s1, $v0				#return value saved in $v0
 			j Loop 							#starts loop again
 
 			# Print out
@@ -42,13 +45,17 @@ Out:	li	$v0,4						# print_string syscall code = 4
 			syscall
 
 			li	$v0,4						# print_string syscall code = 4
-			la	$a0, newline
+			la	$a0, endl
 			syscall
 
 			li $v0, 10 					#exit
 			syscall
 
+			#Add function
+add2:	add $v0, $a0, $a1		#adds to sum
+			jr $ra
+
 .data 																			#data section
-in:	.asciiz	"Input the Value N: "						#input message
+prompt:	.asciiz	"Input the Value N: "						#input message
 out:	.asciiz	"The Sum of N integers is: "	#output message
-newline:	.asciiz "\n"											#new line
+endl:	.asciiz "\n"											#new line

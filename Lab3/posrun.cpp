@@ -10,18 +10,18 @@ int posrun(int list[], int size)
     int maxrun = 0;
     for (int k = 0; k < size; k++)
     {
-	if (list[k] > 0)
-	{
-	    count++;
-	}
-	else
-	{
-	    count = 0;
-	}
-	if (count > maxrun)
-	{
-	    maxrun = count;
-	}
+					if (list[k] > 0)
+					{
+					    count++;
+					}
+					else
+					{
+					    count = 0;
+					}
+					if (count > maxrun)
+					{
+					    maxrun = count;
+					}
     }
     return maxrun;
 }
