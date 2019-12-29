@@ -1,4 +1,6 @@
 # CPSC_250
-Computer Systems and Assembly Language Programming
+**Class:**  Computer Systems and Assembly Language Programming
 
-Projects created in MIPS Assembly Language and simulated on QtSpim
+**Semester:** Fall 2019
+
+Projects created in MIPS Assembly Language and simulated on QtSpim.
